@@ -17,6 +17,7 @@ public class Game {
 	private String[] words;
 	private int moves;
 	private int index;
+	private boolean newGame;
 	private final ReadOnlyObjectWrapper<GameStatus> gameStatus;
 	private ObjectProperty<Boolean> gameState = new ReadOnlyObjectWrapper<Boolean>();
 
@@ -68,6 +69,7 @@ public class Game {
 		prepTmpAnswer();
 		prepLetterAndPosArray();
 		moves = 0;
+		newGame = true;
 
 		gameState.setValue(false); // initial state
 		createGameStatusBinding();
@@ -87,8 +89,9 @@ public class Game {
 					return check;
 				}
 
-				if(tmpAnswer.trim().length() == 0){
+				if(newGame){
 					log("new game");
+					newGame = false;
 					return GameStatus.OPEN;
 				}
 				else if (index != -1){

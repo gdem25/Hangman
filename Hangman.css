@@ -24,4 +24,9 @@
 .status {
 	-fx-font-size: 24pt ;
 	-fx-text-fill: sandybrown ;
+	-fx-start-margin: 15px;
+}
+
+.space {
+	-fx-padding: 15px ;
 }

@@ -37,10 +37,15 @@ public class GameController {
 	private Label enterALetterLabel ;
 	@FXML
 	private TextField textField ;
+	@FXML
+	private Label correctLetters;
+
+	@FXML
+	private Label theCorrectLetters;
 
     public void initialize() throws IOException {
 		System.out.println("in initialize");
-		drawHangman();
+		//drawHangman();
 		addTextBoxListener();
 		setUpStatusLabelBindings();
 	}
@@ -52,6 +57,12 @@ public class GameController {
 				if(newValue.length() > 0) {
 					System.out.print(newValue);
 					game.makeMove(newValue);
+					if(game.getGameStatus() == Game.GameStatus.BAD_GUESS){
+						drawHangman();
+					}
+					if(game.getGameStatus() == Game.GameStatus.GAME_OVER){
+						textField.setEditable(false);
+					}
 					textField.clear();
 				}
 			}
@@ -63,6 +74,8 @@ public class GameController {
 		System.out.println("in setUpStatusLabelBindings");
 		statusLabel.textProperty().bind(Bindings.format("%s", game.gameStatusProperty()));
 		enterALetterLabel.textProperty().bind(Bindings.format("%s", "Enter a letter:"));
+		correctLetters.textProperty().bind(Bindings.format("%s","Correct letters: "));
+		theCorrectLetters.textProperty().bind(Bindings.format("%s",game.playerAnswer()));
 		/*	Bindings.when(
 					game.currentPlayerProperty().isNotNull()
 			).then(
@@ -77,22 +90,48 @@ public class GameController {
 	private void drawHangman() {
 
 		Line line = new Line();
-		line.setStartX(25.0f);
-		line.setStartY(0.0f);
-		line.setEndX(25.0f);
-		line.setEndY(25.0f);
 
 		Circle c = new Circle();
 		c.setRadius(10);
+		if(game.numOfMoves() == 1){
+			line.setStartX(0.0f);
+			line.setStartY(0.0f);
+			line.setEndX(0.0f);
+			line.setEndY(50.0f);
+			board.getChildren().add(line);
 
-		board.getChildren().add(line);
-		board.getChildren().add(c);
-
+		}
+		else if(game.numOfMoves() == 2){
+			board.getChildren().add(c);
+		}
+		else if(game.numOfMoves() ==3) {
+			line.setStartX(25.0f);
+			line.setStartY(0.0f);
+			line.setEndX(25.0f);
+			line.setEndY(75.0f);
+			board.getChildren().add(line);
+		}
+		else if(game.numOfMoves() ==4) {
+			line.setStartX(0.0f);
+			line.setStartY(0.0f);
+			line.setEndX(-15.0f);
+			line.setEndY(-25.0f);
+			board.getChildren().add(line);
+		}
+		else if(game.numOfMoves() ==5) {
+			line.setStartX(0.0f);
+			line.setStartY(0.0f);
+			line.setEndX(-15.0f);
+			line.setEndY(25.0f);
+			board.getChildren().add(line);
+		}
 	}
 		
 	@FXML 
 	private void newHangman() {
 		game.reset();
+		board.getChildren().clear();
+		textField.setEditable(true);
 	}
 
 	@FXML

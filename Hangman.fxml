@@ -44,6 +44,17 @@
 				</Label>
 				<TextField fx:id="textField" GridPane.columnIndex="1">
 				</TextField>
+				<Label fx:id="correctLetters" GridPane.columnIndex="2">
+					<styleClass>
+						<String fx:value="status"/>
+						<String fx:value="space"/>
+					</styleClass>
+				</Label>
+				<Label fx:id="theCorrectLetters" GridPane.columnIndex="3">
+					<styleClass>
+						<String fx:value="status"/>
+					</styleClass>
+				</Label>
 			</GridPane>
 		</VBox>
 	</bottom>

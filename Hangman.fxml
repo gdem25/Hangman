@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
 
+<?import javafx.scene.Group?>
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 	
 	<top>
@@ -22,11 +23,11 @@
 	</top>
 
 	<center>
-		<VBox fx:id="board">
+		<Group fx:id="board">
 			<styleClass>
 				<String fx:value="hangman-board"/>
 			</styleClass>
-		</VBox>
+		</Group>
 	</center>
 	
 	<bottom>

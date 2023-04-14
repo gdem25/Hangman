@@ -230,6 +230,7 @@ public class Game {
             log("won");
             return GameStatus.WON;
         } else if (moves == numOfTries() && index == -1) {
+            moves++;
             log("game over");
             return GameStatus.GAME_OVER;
         } else {

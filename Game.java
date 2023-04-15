@@ -69,13 +69,7 @@ public class Game {
 //            }
 //
 //        });
-        setRandomWord();
-        prepTmpAnswer();
-        prepLetterAndPosArray();
-        moves = 0;
-
-        gameState.setValue(false); // initial state
-        createGameStatusBinding();
+        reset();
     }
 
     private void createGameStatusBinding() {
@@ -203,12 +197,19 @@ public class Game {
     }
 
     public void reset() {
-        moves = 0;
-        index = -2;
+//        moves = 0;
+//        index = -2;
+//        setRandomWord();
+//        prepTmpAnswer();
+//        prepLetterAndPosArray();
+//        gameState.setValue(!gameState.getValue());
         setRandomWord();
         prepTmpAnswer();
         prepLetterAndPosArray();
-        gameState.setValue(!gameState.getValue());
+        moves = 0;
+
+        gameState.setValue(false); // initial state
+        createGameStatusBinding();
     }
 
     private int numOfTries() {

@@ -9,55 +9,75 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
-
 <?import javafx.scene.Group?>
-<BorderPane xmlns:fx="http://javafx.com/fxml">
-	
-	<top>
-		<MenuBar>
-			<Menu text="Game">
-				<MenuItem text="Hangman" onAction="#newHangman"/>
-				<MenuItem text="Quit" onAction="#quit"/>
-			</Menu>
-		</MenuBar>
-	</top>
 
-	<center>
-		<Group fx:id="board">
-			<styleClass>
-				<String fx:value="hangman-board"/>
-			</styleClass>
-		</Group>
-	</center>
-	
-	<bottom>
-		<VBox>
-			<Label fx:id="statusLabel">
-				<styleClass>
-					<String fx:value="status"/>
-				</styleClass>
-			</Label>
-			<GridPane>
-				<Label fx:id="enterALetterLabel" GridPane.columnIndex="0">
-					<styleClass>
-						<String fx:value="status"/>
-					</styleClass>
-				</Label>
-				<TextField fx:id="textField" GridPane.columnIndex="1">
-				</TextField>
-				<Label fx:id="correctLetters" GridPane.columnIndex="2">
-					<styleClass>
-						<String fx:value="status"/>
-						<String fx:value="space"/>
-					</styleClass>
-				</Label>
-				<Label fx:id="theCorrectLetters" GridPane.columnIndex="3">
-					<styleClass>
-						<String fx:value="status"/>
-					</styleClass>
-				</Label>
-			</GridPane>
-		</VBox>
-	</bottom>
+<BorderPane xmlns:fx="http://javafx.com/fxml">
+
+    <top>
+        <MenuBar>
+            <Menu text="Hangman Game">
+                <MenuItem text="New Game" onAction="#newHangman"/>
+                <MenuItem text="Quit" onAction="#quit"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <Group fx:id="board">
+            <styleClass>
+                <String fx:value="hangman-board"/>
+            </styleClass>
+        </Group>
+    </center>
+
+    <bottom>
+            <VBox>
+                <Label fx:id="targetLabel">
+                    <styleClass>
+                        <String fx:value="status"/>
+                    </styleClass>
+                </Label>
+                <Label fx:id="missedLabel">
+                    <styleClass>
+                        <String fx:value="status"/>
+                    </styleClass>
+                </Label>
+            </VBox>
+            <VBox>
+                <styleClass>
+                    <String fx:value="greenbg"/>
+                </styleClass>
+                <Label fx:id="statusLabel">
+                    <styleClass>
+                        <String fx:value="status"/>
+                    </styleClass>
+                </Label>
+                <Label fx:id="movesLabel">
+                    <styleClass>
+                        <String fx:value="status"/>
+                    </styleClass>
+                </Label>
+                <GridPane>
+                    <Label fx:id="enterALetterLabel" GridPane.columnIndex="0">
+                        <styleClass>
+                            <String fx:value="status"/>
+                        </styleClass>
+                    </Label>
+                    <TextField fx:id="textField" GridPane.columnIndex="1">
+                    </TextField>
+                    <Label fx:id="correctLetters" GridPane.columnIndex="2">
+                        <styleClass>
+                            <String fx:value="status"/>
+                            <String fx:value="space"/>
+                        </styleClass>
+                    </Label>
+                    <Label fx:id="theCorrectLetters" GridPane.columnIndex="3">
+                        <styleClass>
+                            <String fx:value="status"/>
+                        </styleClass>
+                    </Label>
+                </GridPane>
+            </VBox>
+    </bottom>
 
 </BorderPane>

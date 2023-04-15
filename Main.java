@@ -13,7 +13,7 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Hangman.fxml"));
 		loader.setController(new GameController(game));
 		Parent root = loader.load();
-		Scene scene = new Scene(root, 500, 800);
+		Scene scene = new Scene(root, 1000, 850);
 		scene.getStylesheets().add(getClass().getResource("Hangman.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();

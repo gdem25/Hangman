@@ -5,9 +5,11 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import java.io.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
 
@@ -69,7 +71,12 @@ public class Game {
 //            }
 //
 //        });
-        setRandomWord();
+        try {
+            setRandomWord();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
         prepTmpAnswer();
         prepLetterAndPosArray();
         moves = 0;
@@ -141,9 +148,30 @@ public class Game {
         return gameStatus.get();
     }
 
-    private void setRandomWord() {
-        //int idx = (int) (Math.random() * words.length);
-        answer = "apple";//words[idx].trim(); // remove new line character
+    private void setRandomWord() throws IOException {
+        ArrayList<String> words = getWordsFromFile("words.txt");
+        answer = getRandomWord(words);
+        //System.out.println("WORD = " + answer);
+    }
+
+    public static String getRandomWord(ArrayList<String> words) {
+        Random random = new Random();
+        int index = random.nextInt(words.size());
+        return words.get(index);
+    }
+
+    public static ArrayList<String> getWordsFromFile(String fileName) throws IOException {
+        ArrayList<String> words = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] lineWords = line.split("\\s+");
+            for (String word : lineWords) {
+                words.add(word);
+            }
+        }
+        reader.close();
+        return words;
     }
 
     private void prepTmpAnswer() {
@@ -205,7 +233,12 @@ public class Game {
     public void reset() {
         moves = 0;
         index = -2;
-        setRandomWord();
+        try {
+            setRandomWord();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
         prepTmpAnswer();
         prepLetterAndPosArray();
         gameState.setValue(!gameState.getValue());

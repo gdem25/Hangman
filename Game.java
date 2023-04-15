@@ -58,6 +58,7 @@ public class Game {
     public Game() {
         gameStatus = new ReadOnlyObjectWrapper<GameStatus>(this, "gameStatus", GameStatus.OPEN);
         temp = new ReadOnlyObjectWrapper<String>(this, "tmpAnswer", tmpAnswer);
+        reset();
 //        gameStatus.addListener(new ChangeListener<GameStatus>() {
 //            @Override
 //            public void changed(ObservableValue<? extends GameStatus> observable,
@@ -69,7 +70,6 @@ public class Game {
 //            }
 //
 //        });
-        reset();
     }
 
     private void createGameStatusBinding() {
